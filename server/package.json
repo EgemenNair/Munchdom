@@ -18,9 +18,11 @@
   "author": "EgemenNair",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^7.2.2"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.11.97",
     "@types/express": "^4.17.17",
     "@typescript-eslint/eslint-plugin": "^5.59.9",
     "@typescript-eslint/parser": "^5.59.9",
