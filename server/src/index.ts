@@ -1,4 +1,7 @@
 // Module Imports
+import { config } from 'dotenv';
+config();
+
 import express, { Express } from 'express';
 import mongoose from 'mongoose';
 
@@ -9,8 +12,7 @@ const app: Express = express();
 const PORT = 5000;
 
 // Connect to MongoDB
-const DB_USER = 'nairegemen';
-const DB_PASSWORD = 'tcxbgY4gGDFQIWqK';
+const { DB_USER, DB_PASSWORD } = process.env;
 const DB_URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@munchdom.eqsb5f0.mongodb.net/`;
 
 mongoose.connect(DB_URL).then(() => {
