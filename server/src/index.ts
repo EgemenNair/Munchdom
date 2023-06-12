@@ -1,6 +1,9 @@
 // Module Imports
-import express, { Request, Response, Express } from 'express';
+import express, { Express } from 'express';
 import mongoose from 'mongoose';
+
+import * as pageRoute from './routes/pageRoute';
+
 // Express Config
 const app: Express = express();
 const PORT = 5000;
@@ -12,16 +15,13 @@ const DB_URL = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@munchdom.eqsb5f0.mongodb
 
 mongoose.connect(DB_URL).then(() => {
   console.log(`⚡️[server]: DB connected at mongodb://localhost/munchdom`);
+  // Listen to server
+  app.listen(PORT, () => {
+    console.log(`⚡️[server]: Server is running at http://localhost:${PORT}/`);
+  });
 });
 
 // Middlewares
 
 // Routes
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
-
-// Listen to server
-app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}/`);
-});
+app.use('/', pageRoute.router);
