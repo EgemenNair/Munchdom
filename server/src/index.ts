@@ -22,6 +22,7 @@ mongoose.connect(DB_URL).then(() => {
 });
 
 // Middlewares
+app.use(express.json());
 
 // Routes
 app.use('/', pageRoute.router);

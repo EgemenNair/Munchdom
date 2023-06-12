@@ -6,10 +6,11 @@ export const getIndexPage = async (req: Request, res: Response) => {
 };
 
 export const postIndexPage = async (req: Request, res: Response) => {
+  const { name, email, password } = req.body;
   const newUser = new User({
-    name: 'Test Name 2',
-    email: 'Test Mail 2',
-    password: 'Test Password 2',
+    name,
+    email,
+    password,
   });
   const createdUser = await newUser.save();
   res.json(createdUser);
