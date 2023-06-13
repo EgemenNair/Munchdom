@@ -4,4 +4,4 @@ import * as pageController from '../controllers/pageController';
 export const router = express.Router();
 
 router.route('/').get(pageController.getIndexPage);
-router.route('/').post(pageController.postIndexPage);
+router.route('/register').post(pageController.postRegister);

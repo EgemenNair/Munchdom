@@ -4,6 +4,7 @@ config();
 
 import express, { Express } from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 import * as pageRoute from './routes/pageRoute';
 
@@ -24,6 +25,7 @@ mongoose.connect(DB_URL).then(() => {
 });
 
 // Middlewares
+app.use(cors('*'));
 app.use(express.json());
 
 // Routes

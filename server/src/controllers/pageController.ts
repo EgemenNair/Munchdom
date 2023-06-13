@@ -5,7 +5,7 @@ export const getIndexPage = async (req: Request, res: Response) => {
   res.status(200).send('Welcome');
 };
 
-export const postIndexPage = async (req: Request, res: Response) => {
+export const postRegister = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
   const newUser = new User({
     username,
