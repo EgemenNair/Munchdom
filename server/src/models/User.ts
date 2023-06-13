@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 
 // Defining IUser interface
 interface IUser extends Document {
-  name: string;
+  username: string;
   email: string;
   password: string;
   createdAt: Date;
@@ -13,9 +13,10 @@ interface IUser extends Document {
 
 // Defining UserSchema
 const UserSchema = new Schema<IUser>({
-  name: {
+  username: {
     type: String,
     required: true,
+    unique: true,
   },
   email: {
     type: String,

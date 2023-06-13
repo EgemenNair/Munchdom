@@ -6,9 +6,9 @@ export const getIndexPage = async (req: Request, res: Response) => {
 };
 
 export const postIndexPage = async (req: Request, res: Response) => {
-  const { name, email, password } = req.body;
+  const { username, email, password } = req.body;
   const newUser = new User({
-    name,
+    username,
     email,
     password,
   });
