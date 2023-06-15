@@ -1,18 +1,32 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  interface IUser {
+    status: string;
+    user?: string;
+  }
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    await fetch('http://localhost:5000/api/login', {
+    const response = await fetch('http://localhost:5000/api/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
     setEmail('');
     setPassword('');
+    const data: Promise<IUser> = await response.json();
+    if ((await data).user) {
+      alert('Login successful');
+      navigate('/dashboard');
+    } else {
+      alert('Please check your username and password');
+    }
   }
 
   return (

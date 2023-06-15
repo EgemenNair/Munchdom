@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import User from '../models/User';
 
 export const createUser = async (req: Request, res: Response) => {
@@ -27,7 +28,14 @@ export const logUser = async (req: Request, res: Response) => {
     if (user) {
       const same = await bcrypt.compare(password, user.password);
       if (same) {
-        return res.json({ status: 'ok', user: true });
+        const token = jwt.sign(
+          {
+            email,
+            password,
+          },
+          process.env.JWT_SECRET,
+        );
+        return res.json({ status: 'ok', user: token });
       }
     } else {
       return res.json({ status: 'error', user: false });
