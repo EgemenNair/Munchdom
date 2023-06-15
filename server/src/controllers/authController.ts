@@ -17,5 +17,15 @@ export const createUser = async (req: Request, res: Response) => {
 };
 
 export const logUser = async (req: Request, res: Response) => {
-  res.send('log');
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email, password });
+    if (user) {
+      return res.json({ status: 'ok', user: true });
+    } else {
+      return res.json({ status: 'error', user: false });
+    }
+  } catch (error) {
+    res.json({ status: 'error', error });
+  }
 };

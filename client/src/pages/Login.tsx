@@ -4,15 +4,20 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleRegister(e: React.FormEvent) {
+  async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
+    await fetch('http://localhost:5000/api/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+      headers: { 'Content-Type': 'application/json' },
+    });
     setEmail('');
     setPassword('');
   }
 
   return (
     <div className="App">
-      <form onSubmit={handleRegister}>
+      <form onSubmit={handleLogin}>
         <label htmlFor="email">Email:</label>
         <input
           id="email"
