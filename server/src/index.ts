@@ -6,7 +6,7 @@ import express, { Express } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-import * as pageRoute from './routes/pageRoute';
+import * as authRoute from './routes/authRoute';
 
 // Express Config
 const app: Express = express();
@@ -29,4 +29,4 @@ app.use(cors('*'));
 app.use(express.json());
 
 // Routes
-app.use('/', pageRoute.router);
+app.use('/api/', authRoute.router);

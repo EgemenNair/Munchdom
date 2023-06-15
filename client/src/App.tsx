@@ -1,58 +1,22 @@
-import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+
 function App() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  async function handleRegister(e: React.FormEvent) {
-    e.preventDefault();
-    await fetch('http://localhost:5000/register', {
-      method: 'POST',
-      body: JSON.stringify({ username, email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-    setUsername('');
-    setEmail('');
-    setPassword('');
-  }
-
   return (
     <div className="App">
-      <form onSubmit={handleRegister}>
-        <label htmlFor="username">Username:</label>
-        <input
-          id="username"
-          type="text"
-          value={username}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setUsername(e.target.value);
-          }}
-        />
-
-        <label htmlFor="email">Email:</label>
-        <input
-          id="email"
-          type="text"
-          value={email}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setEmail(e.target.value);
-          }}
-        />
-
-        <label htmlFor="password">Password:</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setPassword(e.target.value);
-          }}
-        />
-
-        <button>Register</button>
-      </form>
+      <Navbar />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
