@@ -4,6 +4,10 @@ interface INavbar {
   isLoggedIn: boolean;
 }
 
+Navbar.defaultProps = {
+  isLoggedIn: false,
+};
+
 function Navbar(props: INavbar) {
   return (
     <nav>
